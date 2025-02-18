@@ -58,3 +58,40 @@ cleaned_df = cleaned_df[mask]
 cleaned_df
 ```
 ![invoice clean](./Image/invoice%20clean.png)
+
+2. StockCode: Product (item) code. Nominal. A 5-digit integral number uniquely assigned to each distinct product.
+
+```python
+df["StockCode"] = df["StockCode"].astype("str")
+
+code=df[(df["StockCode"].str.match("^\\d{5}$")==False) & (df["StockCode"].str.match("^\\d{5}[a-zA-Z]+$")== False)]["StockCode"].unique()
+code
+```
+- array(['POST', 'D', 'C2', 'DOT', 'M', 'BANK CHARGES', 'S', 'AMAZONFEE',
+       'DCGS0076', 'DCGS0003', 'gift_0001_40', 'DCGS0070', 'm',
+       'gift_0001_50', 'gift_0001_30', 'gift_0001_20', 'DCGS0055',
+       'DCGS0072', 'DCGS0074', 'DCGS0069', 'DCGS0057', 'DCGSSBOY',
+       'DCGSSGIRL', 'gift_0001_10', 'PADS', 'DCGS0004', 'DCGS0073',
+       'DCGS0071', 'DCGS0066P', 'DCGS0068', 'DCGS0067', 'B', 'CRUK'],
+      dtype=object)
+
+- But Stockcode column has differnt number rather than the 5-digit integral number
+
+```python
+cleaned_df["StockCode"] = cleaned_df["StockCode"].astype("str")
+
+mask = (
+    (cleaned_df["StockCode"].str.match("^\\d{5}$") == True)
+    | (cleaned_df["StockCode"].str.match("^\\d{5}[a-zA-Z]+$") == True)
+    | (cleaned_df["StockCode"].str.match("^PADS$") == True)
+)
+
+cleaned_df = cleaned_df[mask]
+
+cleaned_df
+```
+![stockcode](./Image/stockcode%20clean.png)
+
+- Cleaned dataframe
+
+![cleaned_df](./Image/cleaned%20df.png)
