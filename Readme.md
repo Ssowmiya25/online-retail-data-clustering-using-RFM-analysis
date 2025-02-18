@@ -95,3 +95,36 @@ cleaned_df
 - Cleaned dataframe
 
 ![cleaned_df](./Image/cleaned%20df.png)
+
+1. Dropped about 27% of record after cleaning
+
+### Feature Engineering
+
+`cleaned_df["SalesLineTotal"] = cleaned_df["Quantity"]*cleaned_df["Price"]`
+
+### RFM Analysis Overview
+
+###### RFM Analysis is a concept used by Data Science professionals, especially in the marketing domain for understanding and segmenting customers based on their buying behaviour.
+
+###### Using RFM Analysis, a business can assess customers’:
+
+1. recency (the date they made their last purchase)
+2. frequency (how often they make purchases)
+3. monetary value (the amount spent on purchases)
+
+- Recency, Frequency, and Monetary value of a customer are three key metrics that provide information about customer engagement, loyalty, and value to a business.
+
+``` python
+aggregated_df = cleaned_df.groupby(by = "Customer ID" , as_index=False) .agg(
+         MonetaryValue=("SalesLineTotal","sum"),
+         Frequency = ("Invoice","nunique"),
+         LastInvoiceDate=("InvoiceDate","max")
+     )
+aggregated_df.head(5)
+```
+```python
+max_invoice_date = aggregated_df["LastInvoiceDate"].max()
+aggregated_df["Recency"] = (max_invoice_date - aggregated_df["LastInvoiceDate"]).dt.days
+aggregated_df.head(5)
+```
+![rfm](./Image/rfm.png)
