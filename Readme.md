@@ -39,3 +39,22 @@ pd.set_option('display.max_columns',999)
 - Insight
 1. Quantity column has minimum value -80995
 2. Price column has minimum value  -11062.06
+
+### Data Cleaning
+
+1. InvoiceNo: Invoice number. Nominal. A 6-digit integral number uniquely assigned to each transaction. If this code starts with the letter 'c', it indicates a cancellation.
+
+`df["Invoice"].str.replace("[0-9]" , "",regex = True).unique()`
+- But has array(['', 'C', 'A'], dtype=object)
+
+```python
+cleaned_df = df.copy()
+cleaned_df["Invoice"] = cleaned_df["Invoice"].astype("str")
+mask = (
+    cleaned_df["Invoice"].str.match("^\\d{6}$") == True
+)
+cleaned_df = cleaned_df[mask]
+
+cleaned_df
+```
+![invoice clean](./Image/invoice%20clean.png)
