@@ -24,13 +24,17 @@ pd.set_option('display.max_columns',999)
 ![Screenshot](./Image/dataset.png)
 
 `df.info()`
+
+
 ![info](./Image/info.png)
 
 - Insight
 1. Null values present in customer id
 
 `df.describe()`
-[describe](./Image/describe.png)
+
+
+![describe](./Image/describe.png)
 
 - Insight
 1. Quantity column has minimum value -80995
