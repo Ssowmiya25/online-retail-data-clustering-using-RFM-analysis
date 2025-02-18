@@ -1,4 +1,4 @@
-## Online Retail Data Clustering Project uaing RFM analysis
+## Online Retail Data Clustering Project using RFM analysis
 
 ### Data Description 
 
@@ -22,3 +22,16 @@ pd.options.display.float_format = '{:20.2f}'.format
 pd.set_option('display.max_columns',999)
 ```
 ![Screenshot](./Image/dataset.png)
+
+`df.info()`
+![info](./Image/info.png)
+
+- Insight
+1. Null values present in customer id
+
+`df.describe()`
+[describe](./Image/describe.png)
+
+- Insight
+1. Quantity column has minimum value -80995
+2. Price column has minimum value  -11062.06
