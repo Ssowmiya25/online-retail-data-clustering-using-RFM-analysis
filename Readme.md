@@ -21,4 +21,4 @@ pd.options.display.float_format = '{:20.2f}'.format
 
 pd.set_option('display.max_columns',999)
 ```
-![image]("C:\Users\vetri\Pictures\Screenshots\Screenshot 2025-02-18 220404.png")
+![Screenshot](C:/Users/vetri/Pictures/Screenshots/Screenshot-2025-02-18-220404.png)
